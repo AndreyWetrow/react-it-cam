@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
+import New from "./components/News/New";
+import Dialogs from "./components/Dialogs/Dialogs";
+import "./App.css";
+import { Route } from "react-router-dom";
 
-function App() {
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-wrapper">
+      <Header />
+      <Navbar state={props.state.sidebar} />
+      <div className="app-wrapper-content">
+        {/*<Route path="/dialogs" component={Dialogs} />*/}
+        {/*<Route path="/profile" component={Profile} />*/}
+        {/*<Route path="/news" component={New} />*/}
+        <Route
+          path="/dialogs"
+          render={() => (
+            <Dialogs
+              store={props.store}
+              // state={props.state.dialogsPage}
+              dispatch={props.dispatch}
+            />
+          )}
+        />
+        <Route
+          path="/profile"
+          render={() => (
+            <Profile
+              profilePage={props.state.profilePage}
+              dispatch={props.dispatch}
+            />
+          )}
+        />
+        <Route path="/news" render={() => <New />} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
