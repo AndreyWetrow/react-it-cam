@@ -2,9 +2,9 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import New from "./components/News/New";
-import Dialogs from "./components/Dialogs/Dialogs";
 import "./App.css";
 import { Route } from "react-router-dom";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = (props) => {
   return (
@@ -18,10 +18,10 @@ const App = (props) => {
         <Route
           path="/dialogs"
           render={() => (
-            <Dialogs
+            <DialogsContainer
               store={props.store}
               // state={props.state.dialogsPage}
-              dispatch={props.dispatch}
+              // dispatch={props.dispatch}
             />
           )}
         />
@@ -29,8 +29,9 @@ const App = (props) => {
           path="/profile"
           render={() => (
             <Profile
-              profilePage={props.state.profilePage}
-              dispatch={props.dispatch}
+              store={props.store}
+              // profilePage={props.state.profilePage}
+              // dispatch={props.dispatch}
             />
           )}
         />
