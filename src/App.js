@@ -10,18 +10,14 @@ const App = (props) => {
   return (
     <div className="app-wrapper">
       <Header />
-      <Navbar state={props.state.sidebar} />
+      {/*<Navbar state={props.state.sidebar} />*/}
+      <Navbar />
       <div className="app-wrapper-content">
-        {/*<Route path="/dialogs" component={Dialogs} />*/}
-        {/*<Route path="/profile" component={Profile} />*/}
-        {/*<Route path="/news" component={New} />*/}
         <Route
           path="/dialogs"
           render={() => (
             <DialogsContainer
-              store={props.store}
-              // state={props.state.dialogsPage}
-              // dispatch={props.dispatch}
+            // store={props.store}
             />
           )}
         />
@@ -29,9 +25,7 @@ const App = (props) => {
           path="/profile"
           render={() => (
             <Profile
-              store={props.store}
-              // profilePage={props.state.profilePage}
-              // dispatch={props.dispatch}
+            // store={props.store}
             />
           )}
         />
