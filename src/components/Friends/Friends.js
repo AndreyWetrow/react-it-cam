@@ -4,11 +4,9 @@ import classes from "./Friends.module.css";
 const Friends = (props) => {
   let friendsElements = props.state.map((friend) => {
     return (
-      <div className={classes.item}>
-        <span />{" "}
-        <div className={classes.friendName} key={friend.id}>
-          {friend.name}
-        </div>
+      <div className={classes.item} key={friend.id}>
+        <span />
+        <div className={classes.friendName}>{friend.name}</div>
       </div>
     );
   });
