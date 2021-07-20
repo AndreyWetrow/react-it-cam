@@ -5,7 +5,6 @@ import Friends from "../Friends/Friends";
 // import StoreContext from "../../StoreContext";
 
 const Navbar = (props) => {
-  console.log(props);
   return (
     <div className={classes.nav}>
       <div className="menu">
@@ -18,6 +17,11 @@ const Navbar = (props) => {
           <div className={classes.item}>
             <NavLink to="/dialogs" activeClassName={classes.activeLink}>
               Messages
+            </NavLink>
+          </div>
+          <div className={classes.item}>
+            <NavLink to="/users" activeClassName={classes.activeLink}>
+              Users
             </NavLink>
           </div>
           <div className={classes.item}>
