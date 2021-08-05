@@ -1,22 +1,23 @@
 import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
-import { setUserProfile } from "../../redux/profile-reducer";
+
+import { getUserProfile } from "../../redux/profile-reducer";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    console.log(this.props);
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = 1;
     }
-    console.log(userId);
-    axios.get(`https://swapi.dev/api/species/` + userId).then((response) => {
-      this.props.setUserProfile(response.data);
-      console.log(response.data);
-    });
+    this.props.getUserProfile(userId);
+
+    // userAPI.getProfile(userId).then((response) => {
+    //   this.props.setUserProfile(response.data);
+    // });
   }
 
   render() {
@@ -32,9 +33,16 @@ let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
 });
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);
 
-export default connect(mapStateToProps, { setUserProfile })(
-  WithUrlDataContainerComponent
-);
-// export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+//
+// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+//
+// export default connect(mapStateToProps, { getUserProfile })(
+//   WithUrlDataContainerComponent
+// );

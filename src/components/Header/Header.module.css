@@ -4,6 +4,12 @@
 }
 .header img {
   max-width: 100%;
-  display: block;
+  /*display: block;*/
   height: 100%;
+}
+.loginBlock {
+  float: right;
+}
+.loginBlock a {
+  color: #fff;
 }
